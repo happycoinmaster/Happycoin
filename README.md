@@ -1,0 +1,2 @@
+# Happycoin
+Happycoin  opensource

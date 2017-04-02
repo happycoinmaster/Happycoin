@@ -1,0 +1,9 @@
+Building HappyCoin
+
+See doc/readme-qt.rst for instructions on building HappyCoin Qt,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of HappyCoin.
+
+See doc/build-*.txt for instructions on building HappyCoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of HappyCoin.

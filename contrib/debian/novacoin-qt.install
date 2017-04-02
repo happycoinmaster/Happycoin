@@ -1,0 +1,5 @@
+HappyCoin-qt usr/bin
+share/pixmaps/HappyCoin32.xpm usr/share/pixmaps
+share/pixmaps/HappyCoin80.xpm usr/share/pixmaps
+debian/HappyCoin-qt.desktop usr/share/applications
+debian/HappyCoin-qt.protocol usr/share/kde4/services/

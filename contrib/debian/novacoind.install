@@ -1,0 +1,2 @@
+debian/bin/HappyCoind usr/bin
+src/HappyCoind usr/lib/HappyCoin

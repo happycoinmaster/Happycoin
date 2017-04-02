@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=HappyCoin
+Comment=HappyCoin P2P Cryptocurrency
+Comment[ru]=HappyCoin, P2P криптовалюта
+Comment[fr]=HappyCoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=HappyCoin, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/HappyCoin-qt
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/HappyCoin80.xpm
+MimeType=x-scheme-handler/HappyCoin;
+Categories=Office;

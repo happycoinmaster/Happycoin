@@ -1,0 +1,11 @@
+[Unit]
+Description=HappyCoin daemon serivce
+After=network.target
+
+[Service]
+Type=simple
+User=HappyCoin
+ExecStart=/opt/HappyCoin/HappyCoind
+
+[Install]
+WantedBy=multi-user.target

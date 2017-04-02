@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# PROVIDE: HappyCoin
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# HappyCoin_enable (bool): Set to NO by default. Set this variable to YES if you want to enable HappyCoin service.
+# HappyCoin_config (path): Set to /usr/local/etc/HappyCoin.conf by default.
+# HappyCoin_user:  The user account HappyCoin daemon runs as. It uses 'root' user by default.
+# HappyCoin_group: The group account HappyCoin daemon runs as. It uses 'wheel' group by default.
+# HappyCoin_datadir (str): Default to "/var/db/HappyCoin". Base data directory.
+
+. /etc/rc.subr
+
+name=HappyCoin
+rcvar=HappyCoin_enable
+
+: ${HappyCoin_enable:=NO}
+: ${HappyCoin_config=/usr/local/etc/HappyCoin.conf}
+: ${HappyCoin_datadir=/var/db/HappyCoin}
+: ${HappyCoin_user="root"}
+: ${HappyCoin_group="wheel"}
+
+required_files=${HappyCoin_config}
+command=/usr/local/bin/HappyCoind
+HappyCoin_chdir=${HappyCoin_datadir}
+pidfile="${HappyCoin_datadir}/HappyCoind.pid"
+stop_cmd=HappyCoin_stop
+command_args="-conf=${HappyCoin_config} -datadir=${HappyCoin_datadir} -daemon -pid=${pidfile}"
+start_precmd="${name}_prestart"
+
+HappyCoin_create_datadir()
+{
+	echo "Creating data directory"
+	eval mkdir -p ${HappyCoin_datadir}
+	[ $? -eq 0 ] && chown -R ${HappyCoin_user}:${HappyCoin_group} ${HappyCoin_datadir}
+}
+
+HappyCoin_prestart()
+{
+	if [ ! -d "${HappyCoin_datadir}/." ]; then
+		HappyCoin_create_datadir || return 1
+	fi
+}
+
+HappyCoin_requirepidfile()
+{
+	if [ ! "0`check_pidfile ${pidfile} ${command}`" -gt 1 ]; then
+		echo "${name} not running? (check $pidfile)."
+		exit 1
+	fi
+}
+
+HappyCoin_stop()
+{
+    HappyCoin_requirepidfile
+
+	echo "Stopping ${name}."
+	eval ${command} -conf=${HappyCoin_config} -datadir=${HappyCoin_datadir} stop
+	wait_for_pids ${rc_pid}
+}
+
+load_rc_config $name
+run_rc_command "$1"

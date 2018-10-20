@@ -1,8 +1,5 @@
 # Happycoin
 
-##### Completed file
-If you don't need to build yourself it can be download from [here](https://github.com/happycoinmaster/Happycoin/tree/master/Completed_filedebian_ubuntu)
-
 ##### How to run
 
 You can start or stop node with command
@@ -28,7 +25,7 @@ or path/to/file
 
 
 ### How to build from source
-* **Install dependencies : Ubuntu & Debian**
+* **Install dependencies : Ubuntu & Debian** (for [more info](https://github.com/happycoinmaster/Happycoin/blob/master/doc/build-unix.txt))
 ```bash
 :~$ sudo apt-get install build-essential
 :~$ sudo apt-get install libssl-dev
